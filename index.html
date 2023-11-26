@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            padding: 15px;
+            color: #fff;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .info-box {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <title>JavaScript Features Showcase</title>
+</head>
+<body>
+    <header>
+        <h1>JavaScript Features Showcase</h1>
+    </header>
+
+    <main>
+        <div class="dropdown">
+            <button>Dropdown</button>
+            <div class="dropdown-content">
+                <p>Item 1</p>
+                <p>Item 2</p>
+                <p>Item 3</p>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h2>Info Box</h2>
+            <p>This is an example of an info box to display information.</p>
+        </div>
+
+        <script>
+            // JavaScript to enhance functionality
+            // You can add more features and interactivity as needed
+
+            // Example: Toggle class on button click for dropdown
+            document.querySelector('.dropdown button').addEventListener('click', function () {
+                document.querySelector('.dropdown-content').classList.toggle('show');
+            });
+
+            // Close dropdown when clicking outside
+            window.addEventListener('click', function (event) {
+                if (!event.target.matches('.dropdown button')) {
+                    var dropdowns = document.getElementsByClassName('dropdown-content');
+                    for (var i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            });
+        </script>
+    </main>
+</body>
+</html>
