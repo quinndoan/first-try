@@ -27,7 +27,7 @@
 							</ul>
 							<span class="copyright">
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script>,  Apricot Store.<i class="fa fa-heart-o" aria-hidden="true"></i> All <a href="#" target="_blank">Rights Reserved</a>
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script>,  Pet Store.<i class="fa fa-heart-o" aria-hidden="true"></i> All <a href="#" target="_blank">Rights Reserved</a>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</span>
 						</div>
@@ -83,7 +83,7 @@
         }
            
 		
-</script>
+</script> //đoạn javascript xử lý khi nào nhấn nút thì sẽ thông báo cho thêm vào giỏ hàng
     <script type="text/javascript">
 		$('.block2-btn-addcart').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
