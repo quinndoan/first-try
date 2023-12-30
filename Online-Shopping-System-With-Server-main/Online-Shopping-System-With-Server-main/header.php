@@ -129,7 +129,7 @@ session_start();
 					<ul class="header-links pull-right">
 						<li><a href="#"><i class="fa fa-dollar"></i> </a></li>
 						<li><?php
-                             include "db.php";
+                             include "db.php"; // chứa file database php
                             if(isset($_SESSION["uid"])){
                                 $sql = "SELECT first_name FROM user_info WHERE user_id='$_SESSION[uid]'";
                                 $query = mysqli_query($con,$sql);
@@ -283,7 +283,7 @@ session_start();
                             </div>
                             <div class="modal-body">
                             <?php
-                                include "login_form.php";
+                                include "login_form.php"; // chứa file php login
     
                             ?>
           
