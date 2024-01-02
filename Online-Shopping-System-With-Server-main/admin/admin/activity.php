@@ -1,4 +1,4 @@
-<?php
+<?php // file for activity for the user
 session_start();
 include("../../db.php");
 
@@ -56,7 +56,7 @@ include "topheader.php";
                                     $result = sqlsrv_query($con, $sql_select) or die ("Query incorrect.....");
 
                                     while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
-                                    {
+                                    { //display user activity in table rows
                                         echo "<tr><td>{$row['user_id']}</td><td>{$row['email']}</td><td>{$row['mobile']}</td><td>{$row['last_login']}</td><td>{$row['last_logout']}</td></tr>";
                                     }
                                 ?>

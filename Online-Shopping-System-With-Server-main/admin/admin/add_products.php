@@ -3,7 +3,7 @@ session_start();
 include("../../db.php");
 
 
-if(isset($_POST['btn_save']))
+if(isset($_POST['btn_save'])) //isset: check the variable declared and is different than null
 {
 $product_name=$_POST['product_name'];
 $details=$_POST['details'];

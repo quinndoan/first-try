@@ -2,8 +2,8 @@
 $serverName = "LAPTOP-86MF1K51"; // Provide SQL Server name
 $connectionOptions = array(
     "Database" => "PetManaDemo", // Provide database name
-    "Uid" => "", // Provide your username
-    "PWD" => "" // Provide your password
+    "Uid" => "", 
+    "PWD" => "" 
 );
 $con = sqlsrv_connect($serverName, $connectionOptions);
 
