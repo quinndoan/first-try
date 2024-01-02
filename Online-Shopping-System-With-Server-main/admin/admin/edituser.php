@@ -1,28 +1,35 @@
-
-    <?php
+<?php
 session_start();
 include("../../db.php");
-$user_id=$_REQUEST['user_id'];
+$user_id = $_REQUEST['user_id'];
 
+if (isset($_POST['btn_save'])) {
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $email = $_POST['email'];
+    $user_password = $_POST['password'];
 
-if(isset($_POST['btn_save'])) 
-{
-
-$first_name=$_POST['first_name'];
-$last_name=$_POST['last_name'];
-$email=$_POST['email'];
-$user_password=$_POST['password'];
-
-mysqli_query($con,"update user_info set first_name='$first_name', last_name='$last_name', email='$email', password='$user_password' where user_id='$user_id'")or die("Query 2 is inncorrect..........");
-
-header("location: manageuser.php");
-mysqli_close($con);
+    // SQL Server connection and query
+    $tsql = "UPDATE user_info SET first_name=?, last_name=?, email=?, password=? WHERE user_id=?";
+    
+    $params = array($first_name, $last_name, $email, $user_password, $user_id);
+    
+    $stmt = sqlsrv_query($con, $tsql, $params);
+    
+    if ($stmt === false) {
+        die(print_r(sqlsrv_errors(), true));
+    } else {
+        header("location: manageuser.php");
+        sqlsrv_close($con);
+    }
 }
+
 include "sidenav.php";
 include "topheader.php";
 ?>
-      <!-- End Navbar -->
-      <div class="content">
+
+ <!-- End Navbar -->
+ <div class="content">
         <div class="container-fluid">
         <div class="col-md-5 mx-auto">
             <div class="card">
