@@ -122,12 +122,11 @@ session_start();
 			<div id="top-header">
 				<div class="container">
 					<ul class="header-links pull-left">
-						<li><a href="#"><i class="fa fa-phone"></i> +880123456789</a></li>
-						<li><a href="#"><i class="fa fa-envelope-o"></i> help.shohan@gmail.com</a></li>
-						<li><a href="#"><i class="fa fa-map-marker"></i>Daffodil Smart City</a></li>
+						<li><a href="#"><i class="fa fa-phone"></i> +84 123 456 789</a></li>
+						<li><a href="#"><i class="fa fa-envelope-o"></i> cdqpetshouse@gmail.com</a></li>
+						<li><a href="#"><i class="fa fa-map-marker"></i>Hanoi, Vietnam</a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-dollar"></i> </a></li>
 						<li><?php
                              include "db.php";
                             if(isset($_SESSION["uid"])){
