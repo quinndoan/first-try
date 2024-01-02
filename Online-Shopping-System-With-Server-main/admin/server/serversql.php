@@ -13,10 +13,10 @@ $errors = array();
 $reg_date = date("Y/m/d");
 
 // connect to the database
-$serverName = "localhost";
+$serverName = "LAPTOP-86MF1K51";
 $connectionOptions = array(
-    "Database" => "pet-store",
-    "Uid" => "LAPTOP-86MF1K51\Nitro Tiger",
+    "Database" => "PetManaDemo",
+    "Uid" => "",
     "PWD" => ""
 );
 
