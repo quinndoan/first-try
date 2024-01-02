@@ -55,26 +55,25 @@ if(isset($_POST["category"])){
 	}
 }
 if(isset($_POST["brand"])){
-	$brand_query = "SELECT * FROM brands";
-	$run_query = mysqli_query($con,$brand_query);
-	echo "
-		<div class='aside'>
-							<h3 class='aside-title'>Brand</h3>
-							<div class='btn-group-vertical'>
-	";
-	if(mysqli_num_rows($run_query) > 0){
-        $i=1;
-		while($row = mysqli_fetch_array($run_query)){
+    $brand_query = "SELECT * FROM brands";
+    $run_query = sqlsrv_query($con, $brand_query);
+    echo "
+        <div class='aside'>
+                            <h3 class='aside-title'>Brand</h3>
+                            <div class='btn-group-vertical'>
+    ";
+    if(sqlsrv_has_rows($run_query)){
+        $i = 1;
+        while($row = sqlsrv_fetch_array($run_query, SQLSRV_FETCH_ASSOC)){
             
-			$bid = $row["brand_id"];
-			$brand_name = $row["brand_title"];
+            $bid = $row["brand_id"];
+            $brand_name = $row["brand_title"];
             $sql = "SELECT COUNT(*) AS count_items FROM products WHERE product_brand=$i";
-            $query = mysqli_query($con,$sql);
-            $row = mysqli_fetch_array($query);
-            $count=$row["count_items"];
+            $query = sqlsrv_query($con, $sql);
+            $row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
+            $count = $row["count_items"];
             $i++;
-			echo "
-					
+            echo "				
                     
                     <div type='button' class='btn navbar-btn selectBrand' bid='$bid'>
 									
@@ -90,18 +89,17 @@ if(isset($_POST["brand"])){
 	}
 }
 if(isset($_POST["page"])){
-	$sql = "SELECT * FROM products";
-	$run_query = mysqli_query($con,$sql);
-	$count = mysqli_num_rows($run_query);
-	$pageno = ceil($count/9);
-	for($i=1;$i<=$pageno;$i++){
-		echo "
-			<li><a href='#product-row' page='$i' id='page' class='active'>$i</a></li>
-            
-            
-		";
-	}
+    $sql = "SELECT * FROM products";
+    $run_query = sqlsrv_query($con, $sql);
+    $count = sqlsrv_num_rows($run_query);
+    $pageno = ceil($count/9);
+    for($i=1; $i<=$pageno; $i++){
+        echo "
+            <li><a href='#product-row' page='$i' id='page' class='active'>$i</a></li>
+        ";
+    }
 }
+
 if(isset($_POST["getProduct"])){
 	$limit = 9;
 	if(isset($_POST["setPage"])){
