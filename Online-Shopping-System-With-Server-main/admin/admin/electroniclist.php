@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../../db.php");
+include("db.php");
 error_reporting(0);
 
 // Establish a connection to the SQL Server database

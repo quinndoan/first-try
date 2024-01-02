@@ -1,14 +1,15 @@
 <?php
 
-  if (!isset($_SESSION['admin_name'])) {
+if (!isset($_SESSION['admin_name'])) {
     $_SESSION['msg'] = "You must log in first";
     header('location: .././login.php');
-  }
-  if (isset($_GET['logout'])) {
+}
+if (isset($_GET['logout'])) {
     session_destroy();
     unset($_SESSION['admin_name']);
     header("location: .././login.php");
-  }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,34 +56,34 @@
                             <i class="material-icons">person</i>
                             <p>Add users</p>
                         </a>
-                        
+
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="add_products.php">
-                        <i class="material-icons">add</i>
-                        <p>Add Products</p>
+                            <i class="material-icons">add</i>
+                            <p>Add Products</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="products_list.php">
-                        <i class="material-icons">list</i>
-                        <p>Product List</p>
+                            <i class="material-icons">list</i>
+                            <p>Product List</p>
                         </a>
-                        
+
                     </li>
-                     <li class="nav-item ">
+                    <li class="nav-item ">
                         <a class="nav-link" href="manageuser.php">
                             <i class="material-icons">person</i>
                             <p>Manage users</p>
                         </a>
                     </li>
                     <li class="nav-item ">
-            <a class="nav-link" href="activity.php">
-              <i class="material-icons">timeline</i>
-              <p>Activities</p>
-            </a>
-          </li>
-                   
+                        <a class="nav-link" href="activity.php">
+                            <i class="material-icons">timeline</i>
+                            <p>Activities</p>
+                        </a>
+                    </li>
+
                     <li class="nav-item ">
                         <a class="nav-link" href="profile.php">
                             <icons-image _ngcontent-aye-c22="" _nghost-aye-c19=""><i _ngcontent-aye-c19="" class="material-icons icon-image-preview">settings</i></icons-image>

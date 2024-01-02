@@ -4,4 +4,5 @@
   	  <p><?php echo $error ?></p>
   	<?php endforeach ?>
   </div>
-<?php  endif ?>
+<?php  endif // file dùng để thông báo lỗi theo dạng danh sách nếu có lỗi
+?>

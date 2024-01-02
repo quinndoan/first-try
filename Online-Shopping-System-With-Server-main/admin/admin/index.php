@@ -1,6 +1,6 @@
-<?php
+<?php  // file to displays a list of users from a SQL Server database
 session_start();
-include("../../db.php");
+include("db.php");
 
 include "sidenav.php";
 include "topheader.php";

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../../db.php");
+include("db.php");
 $user_id = $_REQUEST['user_id'];
 
 if (isset($_POST['btn_save'])) {

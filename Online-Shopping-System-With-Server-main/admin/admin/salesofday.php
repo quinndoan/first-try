@@ -1,5 +1,5 @@
 
-    <?php
+    <?php //xóa tính năng và file này
 session_start();
 include("./includes/db.php");
 
