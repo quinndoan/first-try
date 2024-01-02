@@ -108,10 +108,12 @@ span.price {
 		<div class="row-checkout">
 		<?php
 		if(isset($_SESSION["uid"])){
-			$sql = "SELECT * FROM user_info WHERE user_id='$_SESSION[uid]'";
-			$query = mysqli_query($con,$sql);
-			$row=mysqli_fetch_array($query);
-		
+			$sql = "SELECT * FROM user_info WHERE user_id=?";
+			$params = array($_SESSION["uid"]);
+			$query = sqlsrv_query($con, $sql, $params);
+			
+			if($query){
+				$row = sqlsrv_fetch_array($query);}
 		echo'
 			<div class="col-75">
 				<div class="container-checkout">
@@ -186,17 +188,20 @@ span.price {
 						$amount_ = $_POST['amount_'.$i];
 						$quantity_ = $_POST['quantity_'.$i];
 						$total=$total+$amount_ ;
-						$sql = "SELECT product_id FROM products WHERE product_title='$item_name_'";
-						$query = mysqli_query($con,$sql);
-						$row=mysqli_fetch_array($query);
-						$product_id=$row["product_id"];
+						$sql = "SELECT product_id FROM products WHERE product_title=?";
+$params = array($item_name_);
+$query = sqlsrv_query($con, $sql, $params);
+
+if($query){
+    $row = sqlsrv_fetch_array($query);
+						$product_id=$row["product_id"];}
 						echo "	
 						<input type='hidden' name='prod_id_$i' value='$product_id'>
 						<input type='hidden' name='prod_price_$i' value='$amount_'>
 						<input type='hidden' name='prod_qty_$i' value='$quantity_'>
 						";
 						$i++;
-					}
+}
 					
 				echo'	
 				<input type="hidden" name="total_count" value="'.$total_count.'">
@@ -207,7 +212,7 @@ span.price {
 				</div>
 			</div>
 			';
-		}else{
+}else{
 			echo"<script>window.location.href = 'cart.php'</script>";
 		}
 		?>
@@ -251,9 +256,12 @@ span.price {
 						$quantity_ = $_POST['quantity_'.$i];
 						$total=$total+$amount_ ;
 						$sql = "SELECT product_id FROM products WHERE product_title='$item_name_'";
-						$query = mysqli_query($con,$sql);
-						$row=mysqli_fetch_array($query);
-						$product_id=$row["product_id"];
+						$query = sqlsrv_query($con, $sql);
+
+if($query){
+    $row = sqlsrv_fetch_array($query);
+    $product_id = $row["product_id"];}
+  
 					
 						echo "	
 

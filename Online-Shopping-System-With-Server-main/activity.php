@@ -1,6 +1,6 @@
 <?php // file for activity for the user
 session_start();
-include("../../db.php");
+include("db.php");
 
 error_reporting(0);
 if(isset($_GET['action']) && $_GET['action']!="" && $_GET['action']=='delete')

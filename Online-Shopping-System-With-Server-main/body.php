@@ -140,24 +140,21 @@
 									
 									<?php
                     include 'db.php';
-								
-                    
-					$product_query = "SELECT * FROM products,categories WHERE product_cat=cat_id AND product_id BETWEEN 70 AND 75";
-                $run_query = mysqli_query($con,$product_query);
-                if(mysqli_num_rows($run_query) > 0){
 
-                    while($row = mysqli_fetch_array($run_query)){
-                        $pro_id    = $row['product_id'];
-                        $pro_cat   = $row['product_cat'];
-                        $pro_brand = $row['product_brand'];
-                        $pro_title = $row['product_title'];
-                        $pro_price = $row['product_price'];
-                        $pro_image = $row['product_image'];
-
-                        $cat_name = $row["cat_title"];
-
-                        echo "
-				
+					$product_query = "SELECT * FROM products INNER JOIN categories ON products.product_cat = categories.cat_id WHERE product_id BETWEEN 70 AND 75";
+					$run_query = sqlsrv_query($con, $product_query);
+					
+					if ($run_query !== false) {
+						while ($row = sqlsrv_fetch_array($run_query, SQLSRV_FETCH_ASSOC)) {
+							$pro_id = $row['product_id'];
+							$pro_cat = $row['product_cat'];
+							$pro_brand = $row['product_brand'];
+							$pro_title = $row['product_title'];
+							$pro_price = $row['product_price'];
+							$pro_image = $row['product_image'];
+							$cat_name = $row["cat_title"];
+					
+							echo "
                         
                                 
 								<div class='product'>
@@ -299,24 +296,22 @@
 									<div class="products-slick" data-nav="#slick-nav-2">
 										<!-- product -->
 										<?php
-                    include 'db.php';
-								
-                    
-					$product_query = "SELECT * FROM products,categories WHERE product_cat=cat_id AND product_id BETWEEN 59 AND 65";
-                $run_query = mysqli_query($con,$product_query);
-                if(mysqli_num_rows($run_query) > 0){
+      include 'db.php';
 
-                    while($row = mysqli_fetch_array($run_query)){
-                        $pro_id    = $row['product_id'];
-                        $pro_cat   = $row['product_cat'];
-                        $pro_brand = $row['product_brand'];
-                        $pro_title = $row['product_title'];
-                        $pro_price = $row['product_price'];
-                        $pro_image = $row['product_image'];
-
-                        $cat_name = $row["cat_title"];
-
-                        echo "
+	  $product_query = "SELECT * FROM products INNER JOIN categories ON products.product_cat = categories.cat_id WHERE product_id BETWEEN 59 AND 65";
+	  $run_query = sqlsrv_query($con, $product_query);
+	  
+	  if ($run_query !== false) {
+		  while ($row = sqlsrv_fetch_array($run_query, SQLSRV_FETCH_ASSOC)) {
+			  $pro_id = $row['product_id'];
+			  $pro_cat = $row['product_cat'];
+			  $pro_brand = $row['product_brand'];
+			  $pro_title = $row['product_title'];
+			  $pro_price = $row['product_price'];
+			  $pro_image = $row['product_image'];
+			  $cat_name = $row["cat_title"];
+	  
+			  echo "
 				
                         
                                 
