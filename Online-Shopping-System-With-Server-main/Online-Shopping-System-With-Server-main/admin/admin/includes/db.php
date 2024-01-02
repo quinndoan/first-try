@@ -1,18 +1,19 @@
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$db = "Apricot_Store";
+$serverName = "LAPTOP-86MF1K51";
+$connectionOptions = array(
+    "Database" => "Book Management",
+    "Uid" => "",
+    "PWD" => ""
+);
 
+// Establishes the connection
+$conn = sqlsrv_connect($serverName, $connectionOptions);
 
-// Create connection
-$con = mysqli_connect($servername, $username, $password,$db);
+// Check the connection
+if (!$conn)
+    die(print_r(sqlsrv_errors(), true));
 
-// Check connection
-if (!$con) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-
+else 
+echo'connection established';
 ?>
