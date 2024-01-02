@@ -129,7 +129,7 @@ session_start();
 					<ul class="header-links pull-right">
 						<li><a href="#"><i class="fa fa-dollar"></i> </a></li>
 						<li><?php
-                             include "db.php"; // chứa file database php
+                             include "db.php";
                             if(isset($_SESSION["uid"])){
                                 $sql = "SELECT first_name FROM user_info WHERE user_id='$_SESSION[uid]'";
                                 $query = mysqli_query($con,$sql);
@@ -180,7 +180,7 @@ session_start();
 							<div class="header-logo">
 								<a href="#" class="logo">
 								<font style="font-style:normal; font-size: 33px;color: aliceblue;font-family: serif">
-                                        Apricot Store
+                                        CDQ Pets House
                                     </font>
 									
 								</a>
@@ -194,8 +194,15 @@ session_start();
 								<form>
 									<select class="input-select">
 										<option value="0">All Categories</option>
-										<option value="1">Electronics</option>
-										<option value="2">Mens Wear</option>
+										<option value="1">Foods</option>
+										<option value="2">Clothes</option>
+										<option value="3">Toys</option>
+										<option value="4">Accessories</option>
+										<option value="5">Healthcare Products</option>
+										<option value="6">Spa and Care</option>
+
+										
+										
 										
 									</select>
 									<input class="input" id="search" type="text" placeholder="Search here">
@@ -210,7 +217,7 @@ session_start();
 							<div class="header-ctn">
 								<!-- Wishlist -->
 								<div>
-									<a href="https://github.com/shohan3401">
+									<a href="https://github.com/quinndoan/pets-management">
 										<i class="fa fa-github"></i>
 										<span>Github</span>
 										
@@ -283,7 +290,7 @@ session_start();
                             </div>
                             <div class="modal-body">
                             <?php
-                                include "login_form.php"; // chứa file php login
+                                include "login_form.php";
     
                             ?>
           
