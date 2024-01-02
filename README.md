@@ -4,16 +4,16 @@ Pet-Store(Named this project) is a project that based on online shopping system.
 
 📌Home Page:
 
-![Home Page](https://github.com/shohan3401/Apricot-Store/blob/main/screenshot/Home.PNG)
+![Home Page]()
 
 📌Admin Page:
 
-![Admin Page](https://github.com/shohan3401/Apricot-Store/blob/main/screenshot/admin.PNG)
+![Admin Page]()
 
 📌Electronics's Page:
 
-![Electronics's Page](https://github.com/shohan3401/Apricot-Store/blob/main/screenshot/electronics.PNG)
+![Electronics's Page]()
 
 📌Top Selling's Page:
 
-![Top Selling's Page](https://github.com/shohan3401/Apricot-Store/blob/main/screenshot/top_selling.PNG)
+![Top Selling's Page]()
