@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -8,22 +7,28 @@ $email    = "";
 $errors = array(); 
 
 // connect to the database
-define('DB_SERVER', 'localhost');
-   define('DB_USERNAME', '');
-   define('DB_PASSWORD', '');
-   define('DB_DATABASE', 'ecommerece');
-   $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
-if (!$db) {
-    die("Connection failed: " . mysqli_connect_error());
+define('DB_SERVER', 'LAPTOP-86MF1K51');
+define('DB_USERNAME', '');
+define('DB_PASSWORD', '');
+define('DB_DATABASE', 'ecommerece');
+$connectionOptions = array(
+    "Database" => DB_DATABASE,
+    "Uid" => DB_USERNAME,
+    "PWD" => DB_PASSWORD
+);
+$conn = sqlsrv_connect(DB_SERVER, $connectionOptions);
+
+if (!$conn) {
+    die(print_r(sqlsrv_errors(), true));
 }
 
 // REGISTER USER
 if (isset($_POST['reg_user'])) {
   // receive all input values from the form
-  $username = mysqli_real_escape_string($db, $_POST['username']);
-  $email = mysqli_real_escape_string($db, $_POST['email']);
-  $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
-  $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
+  $username = sqlsrv_real_escape_string($conn, $_POST['username']);
+  $email = sqlsrv_real_escape_string($conn, $_POST['email']);
+  $password_1 = sqlsrv_real_escape_string($conn, $_POST['password_1']);
+  $password_2 = sqlsrv_real_escape_string($conn, $_POST['password_2']);
 
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
@@ -31,14 +36,14 @@ if (isset($_POST['reg_user'])) {
   if (empty($email)) { array_push($errors, "Email is required"); }
   if (empty($password_1)) { array_push($errors, "Password is required"); }
   if ($password_1 != $password_2) {
-	array_push($errors, "The two passwords do not match");
+    array_push($errors, "The two passwords do not match");
   }
 
   // first check the database to make sure 
   // a user does not already exist with the same username and/or email
   $user_check_query = "SELECT * FROM register WHERE Name='$username' OR email='$email' LIMIT 1";
-  $result = mysqli_query($db, $user_check_query);
-  $user = mysqli_fetch_assoc($result);
+  $result = sqlsrv_query($conn, $user_check_query);
+  $user = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
   
   if ($user) { // if user exists
     if ($user['Name'] === $username) {
@@ -52,38 +57,39 @@ if (isset($_POST['reg_user'])) {
 
   // Finally, register user if there are no errors in the form
   if (count($errors) == 0) {
-  	$password = md5($password_1);//encrypt the password before saving in the database
+    $password = md5($password_1);//encrypt the password before saving in the database
 
-  	$query = "INSERT INTO register (Name, email, password) 
-  			  VALUES('$username', '$email', '$password')";
-  	mysqli_query($db, $query);
-  	$_SESSION['Name'] = $username;
-  	$_SESSION['success'] = "You are now logged in";
-  	header('location: index.php');
+    $query = "INSERT INTO register (Name, email, password) 
+          VALUES('$username', '$email', '$password')";
+    sqlsrv_query($conn, $query);
+    $_SESSION['Name'] = $username;
+    $_SESSION['success'] = "You are now logged in";
+    header('location: index.php');
   }
 }
+
 if (isset($_POST['login_user'])) {
-  $username = mysqli_real_escape_string($db, $_POST['email']);
-  $password = mysqli_real_escape_string($db, $_POST['password']);
+  $username = sqlsrv_real_escape_string($conn, $_POST['email']);
+  $password = sqlsrv_real_escape_string($conn, $_POST['password']);
 
   if (empty($username)) {
-  	array_push($errors, "email is required");
+    array_push($errors, "email is required");
   }
   if (empty($password)) {
-  	array_push($errors, "Password is required");
+    array_push($errors, "Password is required");
   }
 
   if (count($errors) == 0) {
-  	$password = md5($password);
-  	$query = "SELECT * FROM register WHERE email='$username' AND password='$password'";
-  	$results = mysqli_query($db, $query);
-  	if (mysqli_num_rows($results) == 1) {
-  	  $_SESSION['email'] = $username;
-  	  $_SESSION['success'] = "You are now logged in";
-  	  header('location: index.php');
-  	}else {
-  		array_push($errors, "Wrong username/password combination");
-  	}
+    $password = md5($password);
+    $query = "SELECT * FROM register WHERE email='$username' AND password='$password'";
+    $results = sqlsrv_query($conn, $query);
+    if (sqlsrv_num_rows($results) == 1) {
+      $_SESSION['email'] = $username;
+      $_SESSION['success'] = "You are now logged in";
+      header('location: index.php');
+    } else {
+      array_push($errors, "Wrong username/password combination");
+    }
   }
 }
 

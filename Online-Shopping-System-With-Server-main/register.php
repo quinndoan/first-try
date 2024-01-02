@@ -97,9 +97,14 @@ if(empty($f_name) || empty($l_name) || empty($email) || empty($password) || empt
 		exit();
 	}
 	//existing email address in our database
-	$sql = "SELECT user_id FROM user_info WHERE email = '$email' LIMIT 1" ;
-	$check_query = mysqli_query($con,$sql);
-	$count_email = mysqli_num_rows($check_query);
+	$sql = "SELECT user_id FROM user_info WHERE email = '$email'";
+$check_query = sqlsrv_query($con, $sql);
+
+if ($check_query) {
+    $count_email = sqlsrv_has_rows($check_query);
+} else {
+    die(print_r(sqlsrv_errors(), true));
+}
 	if($count_email > 0){
 		echo "
 			<div class='alert alert-danger'>
@@ -110,25 +115,48 @@ if(empty($f_name) || empty($l_name) || empty($email) || empty($password) || empt
 		exit();
 	} else {
 		
-		$sql = "INSERT INTO `user_info` 
-		(`user_id`, `first_name`, `last_name`, `email`, 
-		`password`, `mobile`, `address1`, `address2`) 
-		VALUES (NULL, '$f_name', '$l_name', '$email', 
-		'$password', '$mobile', '$address1', '$address2')";
-		$run_query = mysqli_query($con,$sql);
-		$_SESSION["uid"] = mysqli_insert_id($con);
-		$_SESSION["name"] = $f_name;
-		$ip_add = getenv("REMOTE_ADDR");
-		$sql = "UPDATE cart SET user_id = '$_SESSION[uid]' WHERE ip_add='$ip_add' AND user_id = -1";
-		if(mysqli_query($con,$sql)){
-			echo "register_success";
-			echo "<script> location.href='store.php'; </script>";
-            exit;
+		$sql = "INSERT INTO user_info 
+        (user_id, first_name, last_name, email, password, mobile, address1, address2) 
+        VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)";
+
+$params = array($f_name, $l_name, $email, $password, $mobile, $address1, $address2);
+
+$stmt = sqlsrv_query($conn, $sql, $params);
+
+if ($stmt === false) {
+    die(print_r(sqlsrv_errors(), true));
+}
+
+// Get the inserted user_id
+$sql = "SELECT SCOPE_IDENTITY() AS id";
+$stmt = sqlsrv_query($conn, $sql);
+
+if ($stmt === false) {
+    die(print_r(sqlsrv_errors(), true));
+}
+
+$row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+$_SESSION["uid"] = $row['id'];
+$_SESSION["name"] = $f_name;
+
+// Update cart with user_id
+$ip_add = $_SERVER['REMOTE_ADDR'];
+$sql = "UPDATE cart SET user_id = ? WHERE ip_add = ? AND user_id = -1";
+$params = array($_SESSION["uid"], $ip_add);
+
+$stmt = sqlsrv_query($conn, $sql, $params);
+
+if ($stmt === false) {
+    die(print_r(sqlsrv_errors(), true));
+}
+
+echo "register_success";
+echo "<script> location.href='store.php'; </script>";
+exit;
 		}
 	}
 	}
 	
-}
 
 
 

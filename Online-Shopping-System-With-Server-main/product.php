@@ -59,20 +59,17 @@ include "header.php";
 								include 'db.php';
 								$product_id = $_GET['p'];
 								
-								$sql = " SELECT * FROM products ";
-								$sql = " SELECT * FROM products WHERE product_id = $product_id";
+								$sql = "SELECT * FROM products WHERE product_id = $product_id";
+								
 								if (!$con) {
-									die("Connection failed: " . mysqli_connect_error());
+									die("Connection failed: " . sqlsrv_errors());
 								}
-								$result = mysqli_query($con, $sql);
-								if (mysqli_num_rows($result) > 0) 
-								{
-									while($row = mysqli_fetch_assoc($result)) 
-									{
-									echo '
-									
-                                    
-                                
+								
+								$result = sqlsrv_query($con, $sql);
+								
+								if ($result) {
+									while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+										echo '              
                                 <div class="col-md-5 col-md-push-2">
                                 <div id="product-main-img">
                                     <div class="product-preview">
@@ -452,18 +449,20 @@ include "header.php";
                     include 'db.php';
 								$product_id = $_GET['p'];
                     
-					$product_query = "SELECT * FROM products,categories WHERE product_cat=cat_id AND product_id BETWEEN $product_id AND $product_id+3";
-                $run_query = mysqli_query($con,$product_query);
-                if(mysqli_num_rows($run_query) > 0){
-
-                    while($row = mysqli_fetch_array($run_query)){
-                        $pro_id    = $row['product_id'];
-                        $pro_cat   = $row['product_cat'];
-                        $pro_brand = $row['product_brand'];
-                        $pro_title = $row['product_title'];
-                        $pro_price = $row['product_price'];
-                        $pro_image = $row['product_image'];
-
+								$product_query = "SELECT * FROM products JOIN categories ON product_cat = cat_id WHERE product_cat = $pro_cat AND product_id BETWEEN $product_id AND $product_id+3";
+								$run_query = sqlsrv_query($con, $product_query);
+								
+								if (sqlsrv_has_rows($run_query)) {
+									while ($row = sqlsrv_fetch_array($run_query, SQLSRV_FETCH_ASSOC)) {
+										$pro_id = $row['product_id'];
+										$pro_cat = $row['product_cat'];
+										$pro_brand = $row['product_brand'];
+										$pro_title = $row['product_title'];
+										$pro_price = $row['product_price'];
+										$pro_image = $row['product_image'];
+								
+										
+								
                         $cat_name = $row["cat_title"];
 
                         echo "
