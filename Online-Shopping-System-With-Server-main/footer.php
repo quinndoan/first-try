@@ -8,11 +8,11 @@
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
 								<h3 class="footer-title">About Us</h3>
-								<p>This is an online based shopping platform.</p>
+								<p>Where the love is all for Pets</p>
 								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>Khagan, Daffodil Smart City</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+880123456789</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>help.shohan@gmail.com</a></li>
+									<li><a href="#"><i class="fa fa-map-marker"></i>Dong Da, Hanoi, Vietnam</a></li>
+									<li><a href="#"><i class="fa fa-phone"></i>+84 123 456 789</a></li>
+									<li><a href="#"><i class="fa fa-envelope-o"></i>cdqpetshouse@gmail.com</a></li>
 								</ul>
 							</div>
 						</div>
@@ -25,21 +25,17 @@
 								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
 								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
 							</ul>
-							<span class="copyright">
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script>,  Pet Store.<i class="fa fa-heart-o" aria-hidden="true"></i> All <a href="#" target="_blank">Rights Reserved</a>
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							</span>
+							
 						</div>
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
 								<h3 class="footer-title">Categories</h3>
 								<ul class="footer-links">
-									<li><a href="#">Mobiles</a></li>
-									<li><a href="#">Men</a></li>
-									<li><a href="#">Kids</a></li>
-									<li><a href="#">Accessories</a></li>
+									<li><a href="#">For Dogs</a></li>
+									<li><a href="#">For Cats</a></li>
+									<li><a href="#">For Birds</a></li>
+									<li><a href="#">For Fishes</a></li>
 								</ul>
 							</div>
 						</div>
@@ -83,7 +79,7 @@
         }
            
 		
-</script> //đoạn javascript xử lý khi nào nhấn nút thì sẽ thông báo cho thêm vào giỏ hàng
+</script>
     <script type="text/javascript">
 		$('.block2-btn-addcart').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
