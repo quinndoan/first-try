@@ -1,6 +1,6 @@
 <?php
 session_start();
-$ip_add = getenv("REMOTE_ADDR");
+$ip_add = getenv("REMOTE_ADDR");  // lấy địa chỉ id người dùng gửi tới trang web
 include "db.php";
 
 if(isset($_POST["categoryhome"])){
