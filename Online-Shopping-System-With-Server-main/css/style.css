@@ -511,6 +511,8 @@ textarea.input {
 }
 
 .header-search form {
+  display: flex;
+  align-items: center;
   position: relative;
 }
 
@@ -527,17 +529,14 @@ textarea.input {
 .header-search form .search-btn {
   height: 40px;
   width: 100px;
- background: #00B4DB;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to bottom, #0083B0, #00B4DB);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #0083B0, #00B4DB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
-
+  background: #00B4DB;
   color: #FFF;
   font-weight: 700;
   border: none;
   border-radius: 0px 40px 40px 0px;
+  margin-left: -4px; /* Thêm margin để tạo khoảng cách giữa nút và thanh tìm kiếm */
 }
+
 
 /*----------------------------*\
 	Cart
