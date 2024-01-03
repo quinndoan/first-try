@@ -12,7 +12,7 @@ SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
 
 -- Database creation is not included here, as it's usually handled separately in SQL Server
 
--- Stored procedure creation (MySQL uses DELIMITER, but SQL Server does not need it)
+-- Stored procedure creation 
 CREATE PROCEDURE getcat
     @cid INT
 AS

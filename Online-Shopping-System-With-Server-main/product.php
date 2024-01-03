@@ -61,11 +61,11 @@ include "header.php";
 								
 								$sql = "SELECT * FROM products WHERE product_id = $product_id";
 								
-								if (!$con) {
+								if (!$conn) {
 									die("Connection failed: " . sqlsrv_errors());
 								}
 								
-								$result = sqlsrv_query($con, $sql);
+								$result = sqlsrv_query($conn, $sql);
 								
 								if ($result) {
 									while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
