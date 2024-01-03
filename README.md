@@ -1,5 +1,5 @@
-# Pet-Store
-Pet-Store(Named this project) is a project that based on online shopping system. In this project, we use XAMPP, Apache, HTML, PHP and SQL
+# CDQ Pets House
+CDQ Pets House is a project that creates a website selling pet-related products. In this project, we use XAMPP, Apache, HTML, PHP and SQL
 # Screenshots
 
 📌Home Page:
