@@ -14,6 +14,6 @@ $connection = [
 $conn = sqlsrv_connect($serverName,$connection);
 if(!$conn)
 die(print_r(sqlsrv_errors(),true));
-else 
-echo'connection established';
+//else 
+//echo'connection established';
 ?>
