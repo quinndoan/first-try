@@ -136,7 +136,7 @@ session_start();
 								// Assuming $conn is your SQLSRV connection resource
 								$params = array($_SESSION["uid"]);
 								
-								$query = sqlsrv_query($conn, $sql, $params);
+								$query = sqlsrv_query($con, $sql, $params);
 								
 								if ($query === false) {
 									die(print_r(sqlsrv_errors(), true));

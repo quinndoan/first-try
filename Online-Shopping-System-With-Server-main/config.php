@@ -16,7 +16,7 @@ $connectionOptions = array(
     "Uid" => DB_USERNAME,
     "PWD" => DB_PASSWORD
 );
-$conn = sqlsrv_connect(DB_SERVER, $connectionOptions);
+$con = sqlsrv_connect(DB_SERVER, $connectionOptions);
 
 if (!$conn) {
     die(print_r(sqlsrv_errors(), true));
@@ -42,7 +42,7 @@ if (isset($_POST['reg_user'])) {
   // first check the database to make sure 
   // a user does not already exist with the same username and/or email
   $user_check_query = "SELECT * FROM register WHERE Name='$username' OR email='$email' LIMIT 1";
-  $result = sqlsrv_query($conn, $user_check_query);
+  $result = sqlsrv_query($con, $user_check_query);
   $user = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
   
   if ($user) { // if user exists
@@ -61,7 +61,7 @@ if (isset($_POST['reg_user'])) {
 
     $query = "INSERT INTO register (Name, email, password) 
           VALUES('$username', '$email', '$password')";
-    sqlsrv_query($conn, $query);
+    sqlsrv_query($con, $query);
     $_SESSION['Name'] = $username;
     $_SESSION['success'] = "You are now logged in";
     header('location: index.php');
@@ -69,8 +69,8 @@ if (isset($_POST['reg_user'])) {
 }
 
 if (isset($_POST['login_user'])) {
-  $username = sqlsrv_real_escape_string($conn, $_POST['email']);
-  $password = sqlsrv_real_escape_string($conn, $_POST['password']);
+  $username = sqlsrv_real_escape_string($con, $_POST['email']);
+  $password = sqlsrv_real_escape_string($con, $_POST['password']);
 
   if (empty($username)) {
     array_push($errors, "email is required");
@@ -82,7 +82,7 @@ if (isset($_POST['login_user'])) {
   if (count($errors) == 0) {
     $password = md5($password);
     $query = "SELECT * FROM register WHERE email='$username' AND password='$password'";
-    $results = sqlsrv_query($conn, $query);
+    $results = sqlsrv_query($con, $query);
     if (sqlsrv_num_rows($results) == 1) {
       $_SESSION['email'] = $username;
       $_SESSION['success'] = "You are now logged in";

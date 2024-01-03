@@ -1,5 +1,5 @@
 
-    <?php //xóa tính năng và file này
+    <?php //xóa tính năng và file này  // phải sửa lại mysql sang sql ở file này
 session_start();
 include("./includes/db.php");
 

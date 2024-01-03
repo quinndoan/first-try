@@ -6,7 +6,7 @@ include "db.php";
 if(isset($_POST["categoryhome"])){
     $category_query = "SELECT * FROM categories WHERE cat_id!=1";
     
-    $run_query = sqlsrv_query($conn, $category_query) or die(print_r(sqlsrv_errors(), true));
+    $run_query = sqlsrv_query($con, $category_query) or die(print_r(sqlsrv_errors(), true));
     echo "
         
             
@@ -24,7 +24,7 @@ if(isset($_POST["categoryhome"])){
             $cat_name = $row["cat_title"];
             
             $sql = "SELECT COUNT(*) AS count_items FROM products,categories WHERE product_cat=cat_id";
-            $query = sqlsrv_query($conn, $sql);
+            $query = sqlsrv_query($con, $sql);
             $row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
             $count = $row["count_items"];
             
@@ -67,7 +67,7 @@ if(isset($_POST["gethomeProduct"])){
     }
     
     $product_query = "SELECT * FROM products,categories WHERE product_cat=cat_id AND product_id BETWEEN 71 AND 74";
-    $run_query = sqlsrv_query($conn, $product_query);
+    $run_query = sqlsrv_query($con, $product_query);
     if(sqlsrv_has_rows($run_query)){
         while($row = sqlsrv_fetch_array($run_query, SQLSRV_FETCH_ASSOC)){
             $pro_id    = $row['product_id'];

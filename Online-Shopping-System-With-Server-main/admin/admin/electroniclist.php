@@ -11,9 +11,9 @@ $connectionOptions = array(
     "PWD" => ""
 );
 
-$conn = sqlsrv_connect($serverName, $connectionOptions);
+$con = sqlsrv_connect($serverName, $connectionOptions);
 
-if (!$conn) {
+if (!$con) {
     die(print_r(sqlsrv_errors(), true));
 }
 
@@ -21,7 +21,7 @@ if (isset($_GET['action']) && $_GET['action'] != "" && $_GET['action'] == 'delet
     $product_id = $_GET['product_id'];
     
     ///////picture delete/////////
-    $result = sqlsrv_query($conn, "SELECT product_image FROM products WHERE product_id=?", array($product_id));
+    $result = sqlsrv_query($con, "SELECT product_image FROM products WHERE product_id=?", array($product_id));
 
     $row = sqlsrv_fetch_array($result);
     $picture = $row['product_image'];
@@ -33,7 +33,7 @@ if (isset($_GET['action']) && $_GET['action'] != "" && $_GET['action'] == 'delet
     }
 
     /*this is delete query*/
-    sqlsrv_query($conn, "DELETE FROM products WHERE product_id=?", array($product_id));
+    sqlsrv_query($con, "DELETE FROM products WHERE product_id=?", array($product_id));
 }
 
 ///pagination, xử lý page cho user
@@ -81,7 +81,7 @@ include "topheader.php";
                             <tbody>
                                 <?php
 
-                                $result = sqlsrv_query($conn, "SELECT product_id, product_image, product_title, product_price FROM products WHERE product_cat=1 OFFSET ? ROWS FETCH NEXT 12 ROWS ONLY", array($page1));
+                                $result = sqlsrv_query($con, "SELECT product_id, product_image, product_title, product_price FROM products WHERE product_cat=1 OFFSET ? ROWS FETCH NEXT 12 ROWS ONLY", array($page1));
 
                                 while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
                                     $product_id = $row['product_id'];
@@ -138,5 +138,5 @@ include "topheader.php";
 </div>
 <?php
 include "footer.php";
-sqlsrv_close($conn);
+sqlsrv_close($con);
 ?>

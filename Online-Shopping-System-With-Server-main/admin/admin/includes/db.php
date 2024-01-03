@@ -8,10 +8,10 @@ $connectionOptions = array(
 );
 
 // Establishes the connection
-$conn = sqlsrv_connect($serverName, $connectionOptions);
+$con = sqlsrv_connect($serverName, $connectionOptions);
 
 // Check the connection
-if (!$conn)
+if (!$con)
     die(print_r(sqlsrv_errors(), true));
 
 else 
