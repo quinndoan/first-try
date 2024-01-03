@@ -129,11 +129,22 @@ session_start();
 					<ul class="header-links pull-right">
 						<li><?php
                              include "db.php";
-                            if(isset($_SESSION["uid"])){
-                                $sql = "SELECT first_name FROM user_info WHERE user_id='$_SESSION[uid]'";
-                                $query = mysqli_query($con,$sql);
-                                $row=mysqli_fetch_array($query);
-                                
+							 if (isset($_SESSION["uid"])) {
+								
+								$sql = "SELECT first_name FROM user_info WHERE user_id = ?";
+								
+								// Assuming $conn is your SQLSRV connection resource
+								$params = array($_SESSION["uid"]);
+								
+								$query = sqlsrv_query($conn, $sql, $params);
+								
+								if ($query === false) {
+									die(print_r(sqlsrv_errors(), true));
+								}
+							
+								// Fetch the result as an associative array
+								$row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
+				   
                                 echo '
                                <div class="dropdownn">
                                   <a href="#" class="dropdownn" data-toggle="modal" data-target="#myModal" ><i class="fa fa-user-o"></i> HI '.$row["first_name"].'</a>
