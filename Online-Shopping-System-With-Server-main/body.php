@@ -299,7 +299,7 @@
       include 'db.php';
 
 	  $product_query = "SELECT * FROM products INNER JOIN categories ON products.product_cat = categories.cat_id WHERE product_id BETWEEN 59 AND 65";
-	  $run_query = sqlsrv_query($conn, $product_query);
+	  $run_query = sqlsrv_query($con, $product_query);
 	  
 	  if ($run_query !== false) {
 		  while ($row = sqlsrv_fetch_array($run_query, SQLSRV_FETCH_ASSOC)) {
