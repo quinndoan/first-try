@@ -10,7 +10,7 @@ $errors = array();
 define('DB_SERVER', 'LAPTOP-86MF1K51');
 define('DB_USERNAME', '');
 define('DB_PASSWORD', '');
-define('DB_DATABASE', 'ecommerece');
+define('DB_DATABASE', 'PetManaDemo');
 $connectionOptions = array(
     "Database" => DB_DATABASE,
     "Uid" => DB_USERNAME,
