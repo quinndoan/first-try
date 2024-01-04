@@ -6,7 +6,7 @@ unset($_SESSION["uid"]);
 
 unset($_SESSION["name"]);
 
-$BackToMyPage = $_SERVER['HTTP_REFERER'];
+$BackToMyPage = $_SERVER['HTTP_REFERER'];   // lỗi không nhận đc HTTP-REFFER
 if(isset($BackToMyPage)) {
     header('Location: '.$BackToMyPage);
 } else {

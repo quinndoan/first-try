@@ -1,4 +1,4 @@
-<?php
+<?php    // file hiện thông tin sản phẩm thông qua product_id
 include "header.php";
 ?>
 		<!-- /BREADCRUMB -->
@@ -448,8 +448,7 @@ include "header.php";
 								<?php
                     include 'db.php';
 								$product_id = $_GET['p'];
-                    
-								$product_query = "SELECT * FROM products JOIN categories ON product_cat = cat_id WHERE product_cat = $pro_cat AND product_id BETWEEN $product_id AND $product_id+3";
+                                $product_query = "SELECT * FROM products JOIN categories ON product_cat = cat_id WHERE product_cat = $pro_cat AND product_id BETWEEN $product_id AND $product_id+3";
 								$run_query = sqlsrv_query($con, $product_query);
 								
 								if (sqlsrv_has_rows($run_query)) {
