@@ -2,7 +2,7 @@
 
 $serverName = "LAPTOP-86MF1K51";
 $connectionOptions = array(
-    "Database" => "PetManaDemo",
+    "Database" => "apricot-store",
     "Uid" => "",
     "PWD" => ""
 );
