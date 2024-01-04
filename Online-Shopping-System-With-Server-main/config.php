@@ -18,17 +18,17 @@ $connectionOptions = array(
 );
 $con = sqlsrv_connect(DB_SERVER, $connectionOptions);
 
-if (!$conn) {
+if (!$con) {
     die(print_r(sqlsrv_errors(), true));
 }
 
 // REGISTER USER
 if (isset($_POST['reg_user'])) {
   // receive all input values from the form
-  $username = sqlsrv_real_escape_string($conn, $_POST['username']);
-  $email = sqlsrv_real_escape_string($conn, $_POST['email']);
-  $password_1 = sqlsrv_real_escape_string($conn, $_POST['password_1']);
-  $password_2 = sqlsrv_real_escape_string($conn, $_POST['password_2']);
+  $username = sqlsrv_real_escape_string($con, $_POST['username']);
+  $email = sqlsrv_real_escape_string($con, $_POST['email']);
+  $password_1 = sqlsrv_real_escape_string($con, $_POST['password_1']);
+  $password_2 = sqlsrv_real_escape_string($con, $_POST['password_2']);
 
   // form validation: ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
