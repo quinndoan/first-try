@@ -448,7 +448,7 @@ include "header.php";
 								<?php
                     include 'db.php';
 								$product_id = $_GET['p'];
-                                $product_query = "SELECT * FROM products JOIN categories ON product_cat = cat_id WHERE product_cat = $pro_cat AND product_id BETWEEN $product_id AND $product_id+3";
+                                                                $product_query = "SELECT * FROM products JOIN categories ON product_cat = cat_id WHERE product_cat = cat_id AND product_id BETWEEN $product_id AND $product_id+3";
 								$run_query = sqlsrv_query($con, $product_query);
 								
 								if (sqlsrv_has_rows($run_query)) {
@@ -459,10 +459,8 @@ include "header.php";
 										$pro_title = $row['product_title'];
 										$pro_price = $row['product_price'];
 										$pro_image = $row['product_image'];
-								
+								                $cat_name = $row["cat_title"];
 										
-								
-                        $cat_name = $row["cat_title"];
 
                         echo "
 				
