@@ -451,6 +451,7 @@ include "header.php";
                                                                 $product_query = "SELECT * FROM products JOIN categories ON product_cat = cat_id WHERE product_cat = cat_id AND product_id BETWEEN $product_id AND $product_id+3";
 								$run_query = sqlsrv_query($con, $product_query);
 								
+								if ($run_query){	
 								if (sqlsrv_has_rows($run_query)) {
 									while ($row = sqlsrv_fetch_array($run_query, SQLSRV_FETCH_ASSOC)) {
 										$pro_id = $row['product_id'];
@@ -459,8 +460,7 @@ include "header.php";
 										$pro_title = $row['product_title'];
 										$pro_price = $row['product_price'];
 										$pro_image = $row['product_image'];
-								                $cat_name = $row["cat_title"];
-										
+                        				$cat_name = $row["cat_title"];
 
                         echo "
 				
@@ -499,9 +499,13 @@ include "header.php";
 							
                         
 			";
+		}}
+		else {
+			echo "No rows found.";
 		}
-        ;
-      
+
+		
+	  
 }
 ?>
 					<!-- product -->
