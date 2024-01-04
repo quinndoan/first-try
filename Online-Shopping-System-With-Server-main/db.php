@@ -1,7 +1,7 @@
 <?php
 // kết nối database, khởi tạo biến $con
 $serverName = "LAPTOP-86MF1K51";
-$database = "apricot-store";
+$database = "PetManaDemo";
 $uid = "";
 $pass = "";
 
