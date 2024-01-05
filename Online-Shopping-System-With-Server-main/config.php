@@ -41,7 +41,10 @@ if (isset($_POST['reg_user'])) {
 
   // first check the database to make sure 
   // a user does not already exist with the same username and/or email
-  $user_check_query = "SELECT * FROM register WHERE Name='$username' OR email='$email' LIMIT 1";
+  $user_check_query = "SELECT TOP 1 *
+    FROM register
+    WHERE Name = '$username' OR email = '$email';
+";
   $result = sqlsrv_query($con, $user_check_query);
   $user = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
   
