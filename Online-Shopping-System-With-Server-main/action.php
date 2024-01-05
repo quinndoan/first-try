@@ -108,7 +108,11 @@ if(isset($_POST["getProduct"])){
 	}else{
 		$start = 0;
 	}
-	$product_query = "SELECT * FROM products,categories WHERE product_cat=cat_id LIMIT $start,$limit";
+	$product_query = "SELECT * FROM products 
+                  INNER JOIN categories ON products.product_cat=categories.cat_id 
+				  WHERE product_cat=cat_id 
+				  ORDER BY products.product_id 
+				  OFFSET $start ROWS FETCH NEXT $limit ROWS ONLY";
 	$run_query = sqlsrv_query($con,$product_query);
 	if ($run_query === false) {
         die(print_r(sqlsrv_errors(), true));
