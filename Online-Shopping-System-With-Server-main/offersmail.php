@@ -23,7 +23,8 @@ if (isset($_POST["email"])) {
             ";
             exit();
         }
-        $sql = "SELECT email_id FROM email_info WHERE email = '$email' LIMIT 1";
+       $sql = "SELECT TOP 1 email_id FROM email_info WHERE email = '$email'";      
+
         $check_query = sqlsrv_query($con, $sql);
         $count_email = sqlsrv_num_rows($check_query);
 
