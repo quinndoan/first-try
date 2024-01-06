@@ -129,7 +129,7 @@ if ($stmt === false) {
 
 // Get the inserted user_id
 $sql = "SELECT SCOPE_IDENTITY() AS id";
-$stmt = sqlsrv_query($conn, $sql);
+$stmt = sqlsrv_query($con, $sql);
 
 if ($stmt === false) {
     die(print_r(sqlsrv_errors(), true));
@@ -144,7 +144,7 @@ $ip_add = $_SERVER['REMOTE_ADDR'];
 $sql = "UPDATE cart SET user_id = ? WHERE ip_add = ? AND user_id = -1";
 $params = array($_SESSION["uid"], $ip_add);
 
-$stmt = sqlsrv_query($conn, $sql, $params);
+$stmt = sqlsrv_query($con, $sql, $params);
 
 if ($stmt === false) {
     die(print_r(sqlsrv_errors(), true));
