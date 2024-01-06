@@ -286,7 +286,7 @@ VALUES
 (81, 4, 6, 'Kids blue dress', 300, 'blue dress', '1543993724_pg4.jpg', 'kids blue dress');
 
 -- Table structure for user_info
-CREATE TABLE dbo.user_info (
+CREATE TABLE user_info (
     user_id INT NOT NULL,
     first_name NVARCHAR(100) NOT NULL,
     last_name NVARCHAR(100) NOT NULL,
