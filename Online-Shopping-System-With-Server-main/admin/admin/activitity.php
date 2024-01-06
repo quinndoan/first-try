@@ -22,24 +22,25 @@ if (!$con) {
                 </div>
                 <p class="card-category">Total users</p>
                 <h3 class="card-title">
-                    <?php
-                    $query = "SELECT user_id FROM user_info";
-                    $result = sqlsrv_query($con, $query);
+                <?php
+$query = "SELECT user_id FROM user_info";
+$result = sqlsrv_query($con, $query);
 
-                    iif ($result) {
-                        $row_count = sqlsrv_num_rows($result);
+if ($result) {
+    $row_count = sqlsrv_num_rows($result);
 
-                        // Check if any rows were returned
-                        if ($row_count > 0) {
-                            echo "Number of rows: " . $row_count;
-                        } else {
-                            echo "No rows found.";
-                        }
-                    } else {
-                        // Handle the case where the query execution failed
-                        die(print_r(sqlsrv_errors(), true));
-                    }
-                    ?>
+    // Check if any rows were returned
+    if ($row_count > 0) {
+        echo "Number of rows: " . $row_count;
+    } else {
+        echo "No rows found.";
+    }
+} else {
+    // Handle the case where the query execution failed
+    die(print_r(sqlsrv_errors(), true));
+}
+?>
+
                 </h3>
             </div>
         </div>
