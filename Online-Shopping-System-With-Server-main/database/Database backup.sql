@@ -1,11 +1,11 @@
-SET NOCOUNT ON; -- This is equivalent to "SET SQL_MODE = 'NO_AUTO_VALUE_ON_ZERO';" in MySQL
+SET NOCOUNT ON; 
 SET ANSI_NULLS ON;
 SET QUOTED_IDENTIFIER ON;
 GO
 
 -- Start a transaction
-BEGIN TRANSACTION;
-SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+--BEGIN TRANSACTION;
+--SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
 
 -- Set the time zone (SQL Server does not use this syntax, as it handles time zones differently)
 -- You may need to handle time zone conversions in your application logic
@@ -62,8 +62,8 @@ CREATE TABLE cart (
 
 -- Insert data into cart
 -- Note: You'll need to replace the VALUES with actual data
-INSERT INTO cart (id, p_id, ip_add, user_id, qty)
-VALUES (1, 123, '192.168.1.1', NULL, 5);
+--INSERT INTO cart (id, p_id, ip_add, user_id, qty)
+--VALUES (1, 123, '192.168.1.1', NULL, 5);
 
 -- Insert data into cart table
 INSERT INTO cart (id, p_id, ip_add, user_id, qty)
@@ -197,19 +197,6 @@ CREATE TABLE products (
     product_keywords NVARCHAR(MAX) NOT NULL,
     PRIMARY KEY (product_id)
 );
--- Table structure for products
-CREATE TABLE products (
-    product_id INT NOT NULL,
-    product_cat INT NOT NULL,
-    product_brand INT NOT NULL,
-    product_title NVARCHAR(255) NOT NULL,
-    product_price INT NOT NULL,
-    product_desc NVARCHAR(MAX) NOT NULL,
-    product_image NVARCHAR(MAX) NOT NULL,
-    product_keywords NVARCHAR(MAX) NOT NULL,
-    PRIMARY KEY (product_id)
-);
-
 -- Insert data into products
 INSERT INTO products (product_id, product_cat, product_brand, product_title, product_price, product_desc, product_image, product_keywords)
 VALUES
@@ -286,7 +273,7 @@ VALUES
 (81, 4, 6, 'Kids blue dress', 300, 'blue dress', '1543993724_pg4.jpg', 'kids blue dress');
 
 -- Table structure for user_info
-CREATE TABLE dbo.user_info (
+CREATE TABLE user_info (
     user_id INT NOT NULL,
     first_name NVARCHAR(100) NOT NULL,
     last_name NVARCHAR(100) NOT NULL,
@@ -311,7 +298,7 @@ VALUES
 (24, 'limon', 'Sheikh', 'limon@apricotstore.com', 'limon', '9535688928', 'DSC', 'Dhaka'),
 (25, 'rafin', 'Molla', 'rafin@apricotstore.com', 'rafin', '9535688928', 'DSC', 'Dhaka');
 -- Trigger structure for user_info
-CREATE TRIGGER after_user_info_insert ON dbo.user_info
+CREATE TRIGGER after_user_info_insert ON user_info
 AFTER INSERT
 AS
 BEGIN
@@ -378,7 +365,7 @@ ALTER TABLE order_products
 ALTER TABLE order_products
     ADD CONSTRAINT fk_product_id_order_products FOREIGN KEY (product_id) REFERENCES products (product_id);
 
-COMMIT;
+--COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -121,7 +121,7 @@ if ($check_query) {
 
 $params = array($f_name, $l_name, $email, $password, $mobile, $address1, $address2);
 
-$stmt = sqlsrv_query($conn, $sql, $params);
+$stmt = sqlsrv_query($con, $sql, $params);
 
 if ($stmt === false) {
     die(print_r(sqlsrv_errors(), true));
