@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("db.php");
+include("Online-Shopping-System-With-Server-main\admin\admin\includes\db.php");
 
 if (isset($_GET['action']) && $_GET['action'] != "" && $_GET['action'] == 'delete') {
     $user_id = $_GET['user_id'];
