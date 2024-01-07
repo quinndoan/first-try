@@ -1,6 +1,6 @@
 <?php  // file quản lý mật khẩu và đổi cho admin, quản lý tài khoản người dùng
 session_start();
-include("Online-Shopping-System-With-Server-main\admin\admin\includes\db.php");
+include("includes\db.php");
 
 if (isset($_POST['re_password'])) {
     $email = $_SESSION['admin_email'];
