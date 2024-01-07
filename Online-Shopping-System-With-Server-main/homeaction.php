@@ -93,12 +93,8 @@ if(isset($_POST["gethomeProduct"])){
  ";
 }
 }
-<<<<<<< HEAD
 }          
 
-=======
-}  
->>>>>>> 1ca2733bcc62c70566e3c977e3420fb2a418fda5
 if(isset($_POST["gethomeProduct"])){
     $limit = 9;
     if(isset($_POST["setPage"])){
