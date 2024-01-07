@@ -1,10 +1,25 @@
 <?php  // file to displays a list of users from a SQL Server database
 session_start();
-include("db.php");
-
 include "sidenav.php";
 include "topheader.php";
 include "activitity.php";
+//include("D:\VS Code\Project\DTB\cdq2\pets-management\Online-Shopping-System-With-Server-main\admin\admin\includes\db.php");
+$serverName = "NGUYEN-MY-DUYEN\SQLEXPRESS";
+$database = "PetManaDemo";
+
+
+$connection = [
+    "Database" => $database,
+    "Encrypt" => "no",  // Disable connection encryption
+    "TrustServerCertificate" => "yes"  // Trust the server certificate
+]; 
+
+$con = sqlsrv_connect($serverName, $connection);
+
+if (!$con) {
+    die(print_r(sqlsrv_errors(), true));
+}
+
 
 ?>
 <!-- End Navbar -->
@@ -47,7 +62,7 @@ include "activitity.php";
                                 $last_name = $row['last_name'];
                                 $email = $row['email'];
                                 $password = $row['password'];
-                                $phone = $row['phone'];
+                                $phone = $row['mobile'];
                                 $address1 = $row['address1'];
                                 $address2 = $row['address2'];
 
@@ -66,6 +81,6 @@ include "activitity.php";
 </div>
 
 <?php
-include ("Online-Shopping-System-With-Server-main\admin\admin\footer.php");
+include 'D:\VS Code\Project\DTB\cdq2\pets-management\Online-Shopping-System-With-Server-main\admin\admin\footer.php';
 sqlsrv_close($con); // Close the SQL Server connection
 ?>
