@@ -1,15 +1,20 @@
 <?php
-$serverName = "LAPTOP-86MF1K51"; // Provide SQL Server name
-$connectionOptions = array(
-    "Database" => "PetManaDemo", // Provide database name
-    "Uid" => "", 
-    "PWD" => "" 
-);
-$con = sqlsrv_connect($serverName, $connectionOptions);
+$serverName = "NGUYEN-MY-DUYEN\SQLEXPRESS"; // Provide SQL Server name
+$database = "Pet"; // Provide database name
+
+$connection = [
+    "Database" => $database,
+    "Encrypt" => "no",  // Disable connection encryption
+    "TrustServerCertificate" => "yes"  // Trust the server certificate
+]; 
+
+$con = sqlsrv_connect($serverName, $connection);
 
 if (!$con) {
     die(print_r(sqlsrv_errors(), true));
 }
+
+// Connection established successfully, you can proceed with your database operations
 
 ?>
 
@@ -22,25 +27,15 @@ if (!$con) {
                 </div>
                 <p class="card-category">Total users</p>
                 <h3 class="card-title">
-                <?php
-$query = "SELECT user_id FROM user_info";
-$result = sqlsrv_query($con, $query);
+                    <?php
+                    $query = "SELECT user_id FROM user_info";
+                    $result = sqlsrv_query($con, $query);
 
-if ($result) {
-    $row_count = sqlsrv_num_rows($result);
-
-    // Check if any rows were returned
-    if ($row_count > 0) {
-        echo "Number of rows: " . $row_count;
-    } else {
-        echo "No rows found.";
-    }
-} else {
-    // Handle the case where the query execution failed
-    die(print_r(sqlsrv_errors(), true));
-}
-?>
-
+                    if ($result) {
+                        $row = sqlsrv_num_rows($result);
+                        printf(" " . $row);
+                    }
+                    ?>
                 </h3>
             </div>
         </div>
