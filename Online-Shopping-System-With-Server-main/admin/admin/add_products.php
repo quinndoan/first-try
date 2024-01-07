@@ -19,7 +19,7 @@ if (isset($_POST['btn_save'])) {
     if ($picture_type == "image/jpeg" || $picture_type == "image/jpg" || $picture_type == "image/png" || $picture_type == "image/gif") {
         if ($picture_size <= 50000000) {
             $pic_name = time() . "_" . $picture_name;
-            move_uploaded_file($picture_tmp_name, "../product_images/" . $pic_name);
+            move_uploaded_file($picture_tmp_name, "D:/VS Code/Project/DTB/cdq2/pets-management/Online-Shopping-System-With-Server-main/img/" . $pic_name);
 
             // SQL Server connection and query
             $tsql = "INSERT INTO products (product_cat, product_brand, product_title, product_price, product_desc, product_image, product_keywords) 
