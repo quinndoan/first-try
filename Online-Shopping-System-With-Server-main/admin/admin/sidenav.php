@@ -77,12 +77,7 @@ if (isset($_GET['logout'])) {
                             <p>Manage users</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="activity.php">
-                            <i class="material-icons">timeline</i>
-                            <p>Activities</p>
-                        </a>
-                    </li>
+                    
 
                     <li class="nav-item ">
                         <a class="nav-link" href="profile.php">
@@ -90,19 +85,9 @@ if (isset($_GET['logout'])) {
                             <p>setting</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="salesofday.php">
-                            <i class="material-icons">library_books</i>
-                            <p>sales</p>
-                        </a>
-                    </li>
+                    
 
-                    <li class="nav-item ">
-                        <a class="nav-link" href="../../chat/login.php">
-                            <i class="material-icons">notifications</i>
-                            <p>Discussion</p>
-                        </a>
-                    </li>
+                    
                     <!-- <li class="nav-item active-pro ">
                 <a class="nav-link" href="./upgrade.html">
                     <i class="material-icons">unarchive</i>
