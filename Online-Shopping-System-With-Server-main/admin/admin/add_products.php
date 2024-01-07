@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("db.php");
+include("D:\VS Code\Project\DTB\cdq2\pets-management\Online-Shopping-System-With-Server-main\admin\admin\includes\db.php");
 
 if (isset($_POST['btn_save'])) {
     $product_name = $_POST['product_name'];
