@@ -66,6 +66,6 @@ include "activitity.php";
 </div>
 
 <?php
-include "footer.php";
+include ("Online-Shopping-System-With-Server-main\admin\admin\footer.php");
 sqlsrv_close($con); // Close the SQL Server connection
 ?>
