@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("Online-Shopping-System-With-Server-main\admin\admin\includes\db.php");
+include("includes\db.php");
 error_reporting(0);
 
 if (isset($_GET['action']) && $_GET['action'] != "" && $_GET['action'] == 'delete') {
