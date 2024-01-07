@@ -38,7 +38,7 @@ if (isset($_GET["st"])) {
 
                 <head>
                     <meta charset="UTF-8">
-                    <title>Khan Store</title>
+                    <title>Pet Store</title>
                     <link rel="stylesheet" href="css/bootstrap.min.css" />
                     <script src="js/jquery2.js"></script>
                     <script src="js/bootstrap.min.js"></script>
