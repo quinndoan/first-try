@@ -1,6 +1,6 @@
 <?php   //file php để xử lý order đặt hàng
 session_start();
-include("admin\admin\includes\db.php");
+include("Online-Shopping-System-With-Server-main\admin\admin\includes\db.php");
 
 error_reporting(0);
 
