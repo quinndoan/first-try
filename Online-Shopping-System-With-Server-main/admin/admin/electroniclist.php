@@ -1,17 +1,20 @@
 <?php
 session_start();
-include("db.php");
+include("Online-Shopping-System-With-Server-main\admin\admin\includes\db.php");
 error_reporting(0);
 
 // Establish a connection to the SQL Server database
-$serverName = "LAPTOP-86MF1K51";
-$connectionOptions = array(
-    "Database" => "PetManaDemo",
-    "Uid" => "",
-    "PWD" => ""
-);
+$serverName = "NGUYEN-MY-DUYEN\SQLEXPRESS";
+$database = "Pet";
 
-$con = sqlsrv_connect($serverName, $connectionOptions);
+
+$connection = [
+    "Database" => $database,
+    "Encrypt" => "no",  // Disable connection encryption
+    "TrustServerCertificate" => "yes"  // Trust the server certificate
+]; 
+
+$con = sqlsrv_connect($serverName, $connection);
 
 if (!$con) {
     die(print_r(sqlsrv_errors(), true));
