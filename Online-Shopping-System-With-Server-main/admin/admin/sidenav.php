@@ -86,7 +86,6 @@ if (isset($_GET['logout'])) {
                         </a>
                     </li>
                     
-
                     
                     <!-- <li class="nav-item active-pro ">
                 <a class="nav-link" href="./upgrade.html">
