@@ -56,13 +56,18 @@ if (isset($_SESSION["uid"])) {
             $prod_qty_+$str = $_POST['prod_qty_'.$i];
             $prod_qty=$prod_qty_+$str;
             $sub_total=(int)$prod_price*(int)$prod_qty;
-            $sql1="INSERT INTO order_products 
+           /* $sql1="INSERT INTO order_products 
             (order_pro_id,order_id,product_id,qty,amt) 
             VALUES (?, ?, ?, ?, ?)";
             
             $params1 = array(NULL, $order_id, $prod_id, $prod_qty, $sub_total);
 
+            $result1 = sqlsrv_query($con, $sql1, $params1);*/
+            $sql1 = "INSERT INTO order_products (order_id, product_id, qty, amt) VALUES (?, ?, ?, ?)";
+            $params1 = array($order_id, $prod_id, $prod_qty, $sub_total);
+
             $result1 = sqlsrv_query($con, $sql1, $params1);
+
             
             if($result1){
                 $del_sql="DELETE from cart where user_id=?";
