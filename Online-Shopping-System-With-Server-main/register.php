@@ -122,27 +122,30 @@ $sql = "INSERT INTO user_info
 VALUES ( ?, ?, ?, ?, ?, ?, ?)";
 $params = array($f_name, $l_name, $email, $password, $mobile, $address1, $address2);
 
-
 $run_query = sqlsrv_query($con, $sql, $params);
-$stmt = sqlsrv_query($con, $sql, $params);
 
 if ($run_query === false) {
 die(print_r(sqlsrv_errors(), true));
 }
+$sql = "SELECT * FROM user_info WHERE email = ? AND password = ?";
+    $params = array($email, $password);
+    $run_query = sqlsrv_query($con, $sql,$params);
+    $count = sqlsrv_has_rows($run_query);
+    $row = sqlsrv_fetch_array($run_query, SQLSRV_FETCH_ASSOC);
 
-
+    $_SESSION["uid"] = $row["user_id"];
+    //$_SESSION["name"] = $row["first_name"];
+    //$ip_add = $_SERVER['REMOTE_ADDR'];
 // Retrieve the last inserted user ID and store it in a session variable
-$_SESSION["uid"] = sqlsrv_get_field($run_query, 0);
-echo $_SESSION["uid"];
-// Get the inserted user_id
-$sql = "SELECT SCOPE_IDENTITY() AS id";
-$stmt = sqlsrv_query($con, $sql);
+//$_SESSION["uid"] = sqlsrv_get_field($run_query, 0);
+//echo $_SESSION["uid"];
 
 // Store the first name in a session variable
 $_SESSION["name"] = $f_name;
 
 // Update the cart table with the user ID
-$ip_add = $_SERVER['REMOTE_ADDR'];
+$ip_add_1 = $_SERVER['REMOTE_ADDR'];
+$ip_add = (string)$ip_add_1;
 
 $sql = "UPDATE cart SET user_id = ? WHERE ip_add = ? AND user_id = -1";
 $params = array($_SESSION["uid"], $ip_add);
@@ -157,7 +160,6 @@ die(print_r(sqlsrv_errors(), true));
     echo "register_success";
     echo "<script> location.href='store.php'; </script>";
     exit;
-$stmt = sqlsrv_query($con, $sql, $params);
 
 
 		}
