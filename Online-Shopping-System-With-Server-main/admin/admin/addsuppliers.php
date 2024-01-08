@@ -2,12 +2,16 @@
 session_start();
 include("includes\db.php");
 
+
+
 if(isset($_POST['btn_save'])) {
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $email = $_POST['email'];
     $user_password = $_POST['password'];
-    $mobile = $_POST['mobile'];
+    $mobile = $_POST['phone'];
+    //$mobile = isset($_POST['mobile']) ? $_POST['mobile'] : '12345678909';
+    //echo $mobile;
     $address1 = $_POST['city'];
     $address2 = $_POST['country'];
 
