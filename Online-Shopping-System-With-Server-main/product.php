@@ -56,7 +56,7 @@ include "header.php";
 					<!-- Product main img -->
 					
 					<?php 
-								include 'D:\VS Code\Project\DTB\cdq2\pets-management\Online-Shopping-System-With-Server-main\db.php';
+								include 'C:\xampp\htdocs\Github\pets-management\Online-Shopping-System-With-Server-main\db.php';
 								//$product_id = isset($_GET['p']) ? intval($_GET['p']) : 0;
 								$product_id = $_GET['p'];
 								
@@ -473,11 +473,9 @@ include "header.php";
 								<?php
                     include 'db.php';
 								$product_id = $_GET['p'];
-<<<<<<< HEAD
                                 $product_query = "SELECT * FROM products JOIN categories ON product_cat = cat_id WHERE product_cat = cat_id AND product_id BETWEEN $product_id AND $product_id+3";
-=======
                                                                 $product_query = "SELECT * FROM products JOIN categories ON product_cat = cat_id WHERE product_cat = cat_id AND product_id BETWEEN $product_id AND $product_id+3";
->>>>>>> 1ca2733bcc62c70566e3c977e3420fb2a418fda5
+
 								$run_query = sqlsrv_query($con, $product_query);
 								
 								if ($run_query){	
