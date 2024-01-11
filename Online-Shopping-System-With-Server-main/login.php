@@ -14,15 +14,15 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
     // Check in user_info table
     //$sql = "SELECT * FROM user_info WHERE email = '$email' AND password = '$password'";
    // $run_query = sqlsrv_query($con, $sql);
-   $sql = "SELECT * FROM user_info WHERE email = ? AND password = ?";
+    $sql = "SELECT * FROM user_info WHERE email = ? AND password = ?";
     $params = array($email, $password);
     $run_query = sqlsrv_query($con, $sql,$params);
     $count = sqlsrv_has_rows($run_query);
     $row = sqlsrv_fetch_array($run_query, SQLSRV_FETCH_ASSOC);
-
+    if($row){
     $_SESSION["uid"] = $row["user_id"];
     $_SESSION["name"] = $row["first_name"];
-    $ip_add = $_SERVER['REMOTE_ADDR'];
+    $ip_add = $_SERVER['REMOTE_ADDR'];}
     // Check if the "product_list" cookie is available
     if ($count == 1) {
         if (isset($_COOKIE["product_list"])) {
@@ -67,18 +67,34 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
         exit;
     } else {
         // Check in admin_info table
-        $email = sqlsrv_real_escape_string($con, $_POST["email"]);
+       /* $email = sqlsrv_real_escape_string($con, $_POST["email"]);
         $password = md5($_POST["password"]);
         $sql = "SELECT * FROM admin_info WHERE admin_email = '$email' AND admin_password = '$password'";
         $run_query = sqlsrv_query($con, $sql);
+        $count = sqlsrv_num_rows($run_query);*/
+        $email = $_POST["email"];
+        $password = md5($_POST["password"]); // Lưu ý: Sử dụng hàm băm mật khẩu không an toàn như MD5, khuyến nghị sử dụng phương pháp băm mạnh mẽ hơn như bcrypt.
+
+        // Sử dụng tham số để tránh SQL injection
+        $sql = "SELECT * FROM admin_info WHERE admin_email = ? AND admin_password = ?";
+        $params = array($email, $password);
+
+        $run_query = sqlsrv_query($con, $sql, $params);
         $count = sqlsrv_num_rows($run_query);
+        if ($run_query === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        
+
 
         // If admin record is available in the database, $count will be equal to 1
         if ($count == 1) {
             $row = sqlsrv_fetch_array($run_query);
             $_SESSION["uid"] = $row["admin_id"];
             $_SESSION["name"] = $row["admin_name"];
-            $ip_add = getenv("REMOTE_ADDR");
+            $ip_add = $_SERVER['REMOTE_ADDR'];
+    //$ip_add = getenv("REMOTE_ADDR");
 
             // If the user is logging in from another page, send "login_success"
             echo "login_success";
